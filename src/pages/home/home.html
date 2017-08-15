@@ -1,14 +1,46 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content class="background">
+  <div class="container">
+    <h1  class="header">Tic Tac Toe</h1>
+    
+    <div class="score" id="score">
+      <div class="player">Player {{player.score}}</div>
+      <div class="computer">Computer {{computer.score}}</div>
+    </div>
+    
+    <div class="turn">
+      <div id="your-turn">Your turn</div>
+      <div id="computer-turn">Computer turn</div>
+    </div>
+    
+    <div class="box">      
+      <div class="board">
+        <div id="board-frame" [hidden]="!isPlay"></div>
+        
+        <a class="msg" [hidden]="!isLoad" (click)="start()">Start play</a>
+          
+        <div class="welcome" [hidden]="!isStart">
+          <div class="ask">Would you like to be X or O ?</div>
+          <div class="answer">
+            <a class="answer-x" (click)="select(true)">X</a>
+            <a class="answer-y" (click)="select(false)">O</a>
+          </div>
+        </div><!-- end Welcome -->
+        
+        <!-- play -->
+        <div class="play-board" id="game" [hidden]="!isPlay">
+          <a *ngFor="let i of [0,1,2,3,4,5,6,7,8]" class="square" id="s{{i}}"
+              (click)="playerGo(i)"><span></span>
+          </a>
+        </div>
+        
+        <!-- message -->
+        <div class="msg" [hidden]="!isEnd" id="msg">
+          {{msg}}
+          <a id="restart" (click)="restart()">Replay <span class="ion-android-refresh"></span></a>
+        </div>
+        
+      </div><!-- end game -->
+    </div><!-- end box -->
+    
+  </div><!-- end container -->
 </ion-content>
